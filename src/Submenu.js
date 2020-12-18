@@ -8,28 +8,30 @@ const Submenu = () => {
     page: { page, links },
   } = useGlobalContext();
 
+  console.log(location)
+
   const container = useRef(null);
-  const [columns,setColumns] =useState('col-2')
+  const [columns, setColumns] = useState("col-2");
   useEffect(() => {
-    setColumns('col-2')
+    setColumns("col-2");
     const submenu = container.current;
     const { center, botton } = location;
     submenu.style.left = `${center}px`;
     submenu.style.top = `${botton}px`;
 
     if (links.length === 3) {
-      setColumns('col-3')
+      setColumns("col-3");
     }
     if (links.length > 3) {
-      setColumns('col-4')
+      setColumns("col-4");
     }
-
   }, [location, links]);
   return (
     <aside
       className={`${isSubmenuOpen ? "submenu show" : "submenu"}`}
       ref={container}
     >
+      <section>
       <h4>{page}</h4>
       <div className={`submenu-center ${columns}`}>
         {links.map((link, index) => {
@@ -42,6 +44,7 @@ const Submenu = () => {
           );
         })}
       </div>
+      </section>
     </aside>
   );
 };
